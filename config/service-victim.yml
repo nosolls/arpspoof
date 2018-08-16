@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  generateName: service-victim-
+  labels:
+    group: rkalyana-public
+spec:
+  type: NodePort
+  ports:
+  - name: vnc-web
+    port: 6901
+    protocol: TCP
+  - name: vnc-client
+    port: 5901
+    protocol: TCP
+  selector:
+    app: arpspoof-victim

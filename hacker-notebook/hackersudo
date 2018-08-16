@@ -1,0 +1,3 @@
+hacker ALL=(root) NOPASSWD: /usr/sbin/arpspoof
+hacker ALL=(root) NOPASSWD: /sbin/iptables
+
