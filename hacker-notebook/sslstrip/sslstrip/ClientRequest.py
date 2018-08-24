@@ -16,7 +16,8 @@
 # USA
 #
 
-import urlparse, logging, os, sys, random
+from urllib.parse import urlparse
+import logging, os, sys, random
 
 from twisted.web.http import Request
 from twisted.web.http import HTTPChannel
@@ -27,12 +28,12 @@ from twisted.internet import defer
 from twisted.internet import reactor
 from twisted.internet.protocol import ClientFactory
 
-from ServerConnectionFactory import ServerConnectionFactory
-from ServerConnection import ServerConnection
-from SSLServerConnection import SSLServerConnection
-from URLMonitor import URLMonitor
-from CookieCleaner import CookieCleaner
-from DnsCache import DnsCache
+from .ServerConnectionFactory import ServerConnectionFactory
+from .ServerConnection import ServerConnection
+from .SSLServerConnection import SSLServerConnection
+from .URLMonitor import URLMonitor
+from .CookieCleaner import CookieCleaner
+from .DnsCache import DnsCache
 
 class ClientRequest(Request):
 
