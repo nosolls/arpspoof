@@ -1,0 +1,3 @@
+[submodule "server/wetty"]
+	path = server/wetty
+	url = https://github.com/krishnasrinivas/wetty.git
