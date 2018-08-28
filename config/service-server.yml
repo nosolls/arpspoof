@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  generateName: service-server-
+  name: service-server
   labels:
     group: rkalyana-public
 spec:
@@ -12,6 +12,9 @@ spec:
     protocol: TCP
   - name: https
     port: 443
+    protocol: TCP
+  - name: wetty
+    port: 3000
     protocol: TCP
   selector:
     app: arpspoof-server

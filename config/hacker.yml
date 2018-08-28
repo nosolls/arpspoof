@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  generateName: hacker-
+  name: hacker
   labels:
     group: rkalyana-public
     app: arpspoof-hacker
@@ -15,6 +15,10 @@ spec:
         topologyKey: kubernetes.io/hostname
   containers:
   - name: hacker
-    image: rkalyana/hacker-notebook
+    image: rkalyana/arpspoof-hacker
     ports:
     - containerPort: 8888
+    securityContext:
+      capabilities:
+        add:
+          - NET_ADMIN

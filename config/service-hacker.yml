@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  generateName: service-hacker-
+  name: service-hacker
   labels:
     group: rkalyana-public
 spec:

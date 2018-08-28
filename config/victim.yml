@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  generateName: victim-
+  name: victim
   labels:
     group: rkalyana-public
     app: arpspoof-victim
@@ -21,7 +21,6 @@ spec:
         topologyKey: kubernetes.io/hostname
   containers:
   - name: victim
-    image: rkalyana/ubuntu-xfce-vnc
+    image: rkalyana/arpspoof-victim
     ports:
     - containerPort: 6901
-    - containerPort: 5901

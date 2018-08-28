@@ -40,7 +40,9 @@ RUN mkdir /etc/apache2/ssl
 RUN cp -f /srv/www/app/apache/config/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 RUN cp -f /srv/www/app/apache/config/ssl.conf /etc/apache2/mods-available/ssl.conf
 RUN cp -f /srv/www/app/apache/config/ssl.load /etc/apache2/mods-available/ssl.load
-RUN a2ensite default-ssl.conf
+RUN a2ensite 000-default
+RUN a2ensite default-ssl
+RUN service apache2 restart
 
 ##Install Wetty
 WORKDIR /srv/www/app/wetty

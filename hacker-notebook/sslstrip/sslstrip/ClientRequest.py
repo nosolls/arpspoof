@@ -16,7 +16,8 @@
 # USA
 #
 
-from urllib.parse import urlparse
+#from urllib.parse import urlparse Python3
+import urlparse #Python2
 import logging, os, sys, random
 
 from twisted.web.http import Request

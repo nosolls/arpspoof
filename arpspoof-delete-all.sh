@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kubectl delete service arpspoof-service-hacker arpspoof-service-victim arpspoof-service-server
+kubectl delete service service-hacker service-victim service-server
 
 kubectl delete networkpolicy arpspoof-internal arpspoof-public
 

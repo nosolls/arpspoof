@@ -1,4 +1,4 @@
-FROM rkalyana/base-notebook
+FROM rkalyana/base-notebook-python2
 MAINTAINER Rajesh Kalyanam <rkalyanapurdue@gmail.com>
 
 USER root
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -yq dist-upgrade \
     inetutils-traceroute \
     net-tools \
     iptables \
-    python-twisted-web \
+#    python-twisted-web \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -29,6 +29,8 @@ COPY sslstrip /tmp
 
 WORKDIR /tmp
 
+RUN pip install Twisted
+
 #install SSLStrip
 RUN python setup.py install
 
@@ -38,6 +40,7 @@ COPY --chown=1000:100 Hacker.ipynb $HOME/
 #Allow Jupyter user (jovyan) to modify IP tables, run arpspoof 
 #as root without a password
 ADD hackersudo /etc/sudoers.d/
+RUN chmod 0400 /etc/sudoers.d/hackersudo
 
 RUN fix-permissions $CONDA_DIR
 

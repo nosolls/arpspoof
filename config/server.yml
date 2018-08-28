@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  generateName: server-
+  name: server
   labels:
     group: rkalyana
     app: arpspoof-server
@@ -21,7 +21,8 @@ spec:
         topologyKey: kubernetes.io/hostname
   containers:
   - name: server
-    image: timwang/ieeetrycybserverapacheflaskappsslnohstsnorewrite:1.0
+    image: rkalyana/arpspoof-server
     ports:
     - containerPort: 80
     - containerPort: 443
+    - containerPort: 3000
