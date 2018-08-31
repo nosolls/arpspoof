@@ -2,7 +2,7 @@
 
 case "$1" in
     up)
-	kubectl run --image rkalyana/arpspoof-victim --port 6901 arpspoof-victim
+	kubectl run --image rkalyana/arpspoof-victim --port 80 arpspoof-victim
 	kubectl expose deployment arpspoof-victim --type NodePort
 	;;
     down)
