@@ -61,10 +61,6 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 80
 EXPOSE 3000
 
-#WORKDIR /srv/www/app
-
 # Set default container command
-#ENTRYPOINT ["node app.js -p 3000 && /usr/sbin/apache2ctl -D FOREGROUND"]
 ENTRYPOINT ["/usr/bin/supervisord"]
-#CMD ["runservices.sh"]
 
