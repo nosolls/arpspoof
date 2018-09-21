@@ -31,3 +31,6 @@ docker run -d -p 3000 cheesehub/arpspoof-server
 ## Usage
 
 Select Hacker.ipynb from the ``hacker`` Jupyter notebook interface for a step-by-step overview of executing the ARP poisoning attack. The notebook included commands that need to be run on the victim and server. A terminal for running the commands from the notebook can be launched from the Jupyter notebook interface. In the ``victim`` VNC window, click the start menu at the bottom left corner and navigate the menu options to launch a terminal window. You will be prompted to login to the Wetty session in the ``server`` container. Use ``term`` for both the username and password.
+
+ARP poisoning requires the three containers to be on the same local network. When running these containers using ``docker run``, they are all attached to the same Docker bridge network on the same host. However, if using Kubernetes ensure that the pods are all deployed to the same cluster node. Also, this demonstration has been found to not work when using certain overlay networks. Currently, this has been tested successfully on the Weave overlay network.  
+
