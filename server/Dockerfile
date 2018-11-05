@@ -28,17 +28,26 @@ RUN pip install Flask
 ADD conf /etc/apache2/sites-available
 
 #enable various Apache modules
-RUN a2enmod wsgi && a2enmod ssl && a2enmod rewrite
+RUN a2enmod wsgi && \
+    a2enmod ssl && \
+    a2enmod rewrite
 
 #disable default sites and use our app instead
-RUN a2dissite 000-default && a2dissite default-ssl && a2ensite server && a2ensite server-ssl
+RUN a2dissite 000-default && \
+    a2dissite default-ssl && \
+    a2ensite server && \
+    a2ensite server-ssl
 
 #copy supervisord config file
 #need to start both Apache and Jupyter notebook server
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Expose the Apache port
+#copy the primary notebook
+COPY --chown=1000:100 Server.ipynb $HOME/
+
+# Expose the Apache and Jupyter ports
 EXPOSE 80
+EXPOSE 8888
 
 # Set default container command
 ENTRYPOINT ["/usr/bin/supervisord"]
