@@ -49,7 +49,7 @@ Before being able to run on either CHEESEHub or Kubernetes, Docker images needs 
 Container definitions for the hacker, victim, and, server can be found in the *hacker-notebook*, *victim-vnc*, and, *server* directories 
 respectively. To build these containers, run:
 
-``
+```bash
 cd hacker-notebook
 docker build -t <hacker image tag of your choice> .
 
@@ -58,18 +58,17 @@ docker build -t <victim image tag of your choice> .
 
 cd server
 docker build -t <server image tag of your choice> .
-
-``
+```
 
 Once the Docker images have been built, you can run the containers using just the Docker engine:
 
-``
+```bash
 docker run -d -p 8888 <hacker image tag from above>
 
 docker run -d -p 80 <victim image tag from above>
 
 docker run -d -p 8888 <server image tag from above>
-``
+```
 
 Since the user facing interface of the hacker and server containers is the Jupyter notebook we expose port 8888 to be accessible on the 
 host machine. The victim container similarly provides the VNC interface at port 80.
