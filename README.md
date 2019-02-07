@@ -16,8 +16,7 @@ between these machines.
 If you are an instructor teaching cybersecurity concepts and, specifically network security, you can use this example to provide hands-on 
 experience with ARPSpoof attacks, demonstrating the ease with which network traffic can be compromised. The ARPSpoof attack 
 is also the first step in demonstrating SSLStrip, whereby even SSL-enabled communication can be compromised once a hacker has 
-successfully poisoned ARP tables. These two demonstrations together can illustrate the real-world impacts of such man-in-the-middle 
-attacks that may not be readily visible to the layperson.
+successfully poisoned ARP tables. These two demonstrations together can illustrate the real-world impacts.
 
 ### Students
 
@@ -28,11 +27,7 @@ get further practical experience with how these attacks operate, and, learn how 
 ## Design and Architecture
 
 This demonstration is designed using three Docker containers, one each for the hacker, victim, and, server attached to the same virtual 
-network. The containers all come with the necessary network tools to ping, examine ARP tables, and, trace the route between machines. 
-The hacker machine comes with the ARPSpoof command line tool for running an ARP poisoning attack. The victim container provides a VNC 
-interface to Ubuntu and the requisite commands can be run on the LXTerminal emulator. Both the hacker and server provide a Jupyter 
-notebook interface; all the commands can be run in the terminal console provided by Jupyter. The hacker notebook contains instructions 
-on conducting the ARP poisoning attack; including the commands to be run on each of the three containers.
+network. The containers all come with the necessary network tools to ping, examine ARP tables, and, trace packet routing between machines. The hacker machine comes with the ARPSpoof command line tool for running an ARP poisoning attack. The victim container provides a VNC interface to Ubuntu and the requisite commands can be run on the LXTerminal emulator. Both the hacker and server provide a Jupyter notebook interface; the necessary commands can be run in the terminal console provided by Jupyter. The hacker notebook contains instructions on conducting the ARP poisoning attack; including the commands to be run on each of the three containers.
 
 ## Installation and Usage
 
@@ -60,7 +55,7 @@ cd server
 docker build -t <server image tag of your choice> .
 ```
 
-Once the Docker images have been built, you can run the containers using just the Docker engine:
+Once the Docker images have been built, you can run the containers using just the Docker engine. By default, all containers are attached to the default Docker network.
 
 ```bash
 docker run -d -p 8888 <hacker image tag from above>
@@ -71,14 +66,13 @@ docker run -d -p 8888 <server image tag from above>
 ```
 
 Since the user facing interface of the hacker and server containers is the Jupyter notebook we expose port 8888 to be accessible on the 
-host machine. The victim container similarly provides the VNC interface at port 80.
+host machine. The victim container provides the VNC interface on port 80.
 
 ### Usage
 On navigating to the URL of the hacker container in your browser, you will be presented with a Jupyter notebook interface displaying a list of files 
 and folders. Click to select the Hacker.ipynb Jupyter notebook to begin. The notebook includes a step-by-step overview of how to examine the ARP 
 tables, use ping to establish simple communication between the victim and server, and run the ARP poisoning attack from the hacker. Following the 
-attack, you will re-examine the ARP tables to confirm success of the attack, and, discover how the regular communication is *seemingly* unaffected 
-from the layperson's point of view.
+attack, you will re-examine the ARP tables to confirm success of the attack, and, discover how the regular communication is *seemingly* unaffected unless examined closely.
 
 ## How to Contribute
 
