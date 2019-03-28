@@ -50,5 +50,7 @@ RUN pip install pyopenssl service_identity Twisted && \
 #copy the primary notebook
 COPY --chown=1000:100 Hacker.ipynb $HOME/
 
+WORKDIR $HOME
+
 CMD ["start-notebook.sh","--NotebookApp.token="]
 
