@@ -7,13 +7,13 @@ USER root
 # Install the necessary networking tools
 RUN apt-get update && \
     apt-get install -yq --no-install-recommends \
-    gcc \
+    gcc=4:7.4.0-1ubuntu2.2 \
     libc-dev \
-    dsniff \
-    inetutils-ping \
-    inetutils-traceroute \
-    net-tools \
-    iptables \
+    dsniff=2.4b1+debian-28.1~build1 \
+    inetutils-ping=2:1.9.4-3 \
+    inetutils-traceroute=2:1.9.4-3 \
+    net-tools=1.60+git20161116.90da8a0-1ubuntu1 \
+    iptables=1.6.1-2ubuntu2 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -42,13 +42,15 @@ COPY sslstrip /tmp
 WORKDIR /tmp
 
 # Install SSLStrip and its dependencies
-RUN pip install pyopenssl service_identity Twisted && \
-    python setup.py install && \
+RUN pip install pyopenssl==19.0.0 service_identity==18.1.0 Twisted==19.2.0 && \
+	python setup.py install && \
     rm -rf /tmp/sslstrip && \
     fix-permissions $CONDA_DIR
 
 #copy the primary notebook
 COPY --chown=1000:100 Hacker.ipynb $HOME/
+
+WORKDIR $HOME
 
 CMD ["start-notebook.sh","--NotebookApp.token="]
 
